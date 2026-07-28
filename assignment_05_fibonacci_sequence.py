@@ -48,54 +48,43 @@
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
-def print_fibonacci(n):
-    """Generates and prints the first N Fibonacci numbers on one line."""
+# --- PART A: Generate First N Terms ---
+def generate_fibonacci(n):
     if n <= 0:
-        print("Error: N must be a positive integer.")
-        return
+        return []
+    elif n == 1:
+        return [0]
+    
+    sequence = [0, 1]
+    while len(sequence) < n:
+        sequence.append(sequence[-1] + sequence[-2])
+    return sequence
 
-    sequence = []
-    a, b = 0, 1
-
-    for _ in range(n):
-        sequence.append(a)
-        a, b = b, a + b
-
-    print("Fibonacci sequence:", " ".join(str(num) for num in sequence))
-
-
-def is_fibonacci(num):
-    """Checks if a given non-negative integer belongs to the Fibonacci sequence."""
+# --- PART B: Check if a Number Belongs to the Sequence ---
+def is_fibonacci_number(num):
     if num < 0:
         return False
-
     a, b = 0, 1
     while a < num:
         a, b = b, a + b
-
     return a == num
 
-
-def main():
-    # Part A Execution
-    try:
-        n = int(input("How many terms? "))
-        print_fibonacci(n)
-    except ValueError:
-        print("Error: N must be a positive integer.")
-
-    print()  # Empty line for formatting
-
-    # Part B Execution
-    try:
-        check_num = int(input("Enter a number to check: "))
-        if is_fibonacci(check_num):
-            print(f"{check_num} is a Fibonacci number.")
-        else:
-            print(f"{check_num} is NOT a Fibonacci number.")
-    except ValueError:
-        print("Error: Please enter a valid integer.")
-
-
 if __name__ == "__main__":
-    main()
+    # PART A DEMO
+    print("--- PART A: First N Terms ---")
+    n = int(input("How many terms? "))
+    if n <= 0:
+        print("Error: N must be a positive integer.")
+    else:
+        fib_seq = generate_fibonacci(n)
+        print("Fibonacci sequence:", " ".join(str(x) for x in fib_seq))
+
+    print("\n" + "=" * 40 + "\n")
+
+    # PART B DEMO
+    print("--- PART B: Check Fibonacci Number ---")
+    check_num = int(input("Enter a number to check: "))
+    if is_fibonacci_number(check_num):
+        print(f"{check_num} IS a Fibonacci number.")
+    else:
+        print(f"{check_num} is NOT a Fibonacci number.")

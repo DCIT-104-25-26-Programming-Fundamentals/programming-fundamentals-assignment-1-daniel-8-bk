@@ -54,46 +54,31 @@
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
-def print_single_table(num):
-    """Prints the multiplication table for a single number from 1 to 12."""
-    if num <= 0:
-        print("Error: N must be a positive integer.")
-        return
-
-    print(f"Multiplication Table for {num}:")
+# --- PART A: Single Table ---
+def generate_single_table(num):
+    print(f"\nMultiplication Table for {num}:")
     for i in range(1, 13):
         print(f"{num} x {i} = {num * i}")
 
-
-def print_multiple_tables(n):
-    """Prints full multiplication tables for every number from 1 to N."""
-    if n <= 0:
-        print("Error: N must be a positive integer.")
-        return
-
+# --- PART B: Tables from 1 to N ---
+def generate_tables_up_to_n(n):
     for i in range(1, n + 1):
-        print_single_table(i)
-        if i < n:
-            print("----------------------------------------")
-
-
-def main():
-    # Part A Execution
-    try:
-        num = int(input("Enter a number: "))
-        print_single_table(num)
-    except ValueError:
-        print("Error: N must be a positive integer.")
-
-    print()  # Blank line separator
-
-    # Part B Execution
-    try:
-        n = int(input("Enter a number N for multiple tables: "))
-        print_multiple_tables(n)
-    except ValueError:
-        print("Error: N must be a positive integer.")
-
+        generate_single_table(i)
+        print("--------------------")
 
 if __name__ == "__main__":
-    main()
+    # PART A DEMO
+    print("--- PART A ---")
+    num = int(input("Enter a number: "))
+    generate_single_table(num)
+
+    print("\n" + "=" * 40 + "\n")
+
+    # PART B DEMO
+    print("--- PART B ---")
+    n = int(input("Enter a positive integer N: "))
+    
+    if n <= 0:
+        print("Error: N must be a positive integer.")
+    else:
+        generate_tables_up_to_n(n)
